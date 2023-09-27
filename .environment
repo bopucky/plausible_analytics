@@ -1,14 +1,18 @@
-#DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5432/main?pool_size=40
-#CLICKHOUSE_DATABASE_URL=http://127.0.0.1:8123/plausible_test
-export SECRET_KEY_BASE=/njrhntbycvastyvtk1zycwfm981vpo/0xrvwjjvemdakc/vsvbrevlwsc6u8rcg
+export DATABASE_URL=postgres://main:main@postgres.internal:5432/main?pool_size=40
+export CLICKHOUSE_DATABASE_URL=http://main:119b7b160bb1e59ce7f6669beb29eb63@clickhouse.internal:8123/main
 export BASE_URL=$(echo $PLATFORM_ROUTES | base64 --decode | jq -r 'to_entries[] | select(.value.primary == true) | .key')
-export CRON_ENABLED=false
+export CRON_ENABLED=true
 export LOG_LEVEL=debug
-ENVIRONMENT=production
-#MAILER_ADAPTER=Bamboo.TestAdapter
-ENABLE_EMAIL_VERIFICATION=true
-SELFHOST=true
-HCAPTCHA_SITEKEY=test
-HCAPTCHA_SECRET=scottiger
-IP_GEOLOCATION_DB=test/priv/GeoLite2-City-Test.mmdb
-SITE_DEFAULT_INGEST_THRESHOLD=1000000
+export MIX_ENV=prod
+export ENVIRONMENT=$MIX_ENV
+export MAILER_ADAPTER=Bamboo.SMTPAdapter
+export ENABLE_EMAIL_VERIFICATION=false
+export SELFHOST=true
+export IP_GEOLOCATION_DB=test/priv/GeoLite2-City-Test.mmdb
+export SITE_DEFAULT_INGEST_THRESHOLD=1000000
+#export HCAPTCHA_SITEKEY="" set using API
+#export HCAPTCHA_SECRET="" set using API
+export SECRET_KEY_BASE=$PLATFORM_PROJECT_ENTROPY$PLATFORM_ENVIRONMENT
+export STORAGE_DIR=/app/storage
+export SMTP_HOST_ADDR=$PLATFORM_SMTP_HOST
+export SMTP_HOST_SSL_ENABLED=false

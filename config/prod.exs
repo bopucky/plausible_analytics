@@ -5,3 +5,7 @@ config :plausible, PlausibleWeb.Endpoint,
   check_origin: false,
   server: true,
   code_reloader: false
+
+config :tzdata,
+       :data_dir,
+       "/app/storage"
