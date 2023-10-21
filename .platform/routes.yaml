@@ -1,0 +1,19 @@
+# The routes of the project.
+#
+# Each route describes how an incoming URL is going
+# to be processed by Upsun (Staging).
+# More information: https://docs.upsun.com/define-routes.html
+"https://{default}/":
+  type: upstream
+  upstream: "plausible_analytics:http"
+# A basic redirect definition
+# More information: https://docs.upsun.com/define-routes.html#basic-redirect-definition
+"https://www.{default}":
+  type: redirect
+  to: "https://{default}/"
+"https://{default}/live/websocket":
+  type: upstream
+  upstream: "plausible_analytics:http"
+  cache:
+    enabled: false
+

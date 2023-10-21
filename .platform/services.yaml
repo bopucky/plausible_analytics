@@ -1,0 +1,14 @@
+# The services of the project.
+#
+# Each service listed will be deployed
+# to power your Upsun (Staging) project.
+# More information: https://docs.upsun.com/add-services.html
+# Full list of available services: https://docs.upsun.com/add-services.html#available-services
+clickhouse:
+  type: clickhouse:23
+  disk: 2048
+
+postgres:
+  type: postgresql:14
+  disk: 2048
+
